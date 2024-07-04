@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+
+  gamegarden_db:
+    image: postgres:latest
+    container_name: gamegarden_db
+    volumes:
+      - gamegarden_db:/var/lib/postgresql/data
+    env_file:
+      - gamegarden.env
+    healthcheck:
+      test: "exit 0"
+    ports:
+      - "5050:5432"
+    networks:
+      - nentwork
+
+networks:
+  nentwork:
+    ipam:
+      driver: default
+      config:
+        - subnet: "20.0.0.0/24"
+  root_webserver:
+    external: true
+
+
+volumes:
+  gamegarden_db:
+    driver: local

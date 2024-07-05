@@ -1,8 +1,8 @@
-package de.maurer.pr_dallmayr.mapper
+package de.maurer.gamegarden.mapper
 
-import de.maurer.pr_dallmayr.base.BaseMapper
-import de.maurer.pr_dallmayr.entities.Users
-import de.maurer.pr_dallmayr.web.dto.UsersDTO
+import de.maurer.gamegarden.base.BaseMapper
+import de.maurer.gamegarden.entities.Users
+import de.maurer.gamegarden.web.dto.UsersDTO
 
 interface UsersMapper: BaseMapper<UsersDTO, Users> {
 

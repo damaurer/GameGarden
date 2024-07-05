@@ -1,8 +1,8 @@
-package de.maurer.pr_dallmayr.mapper.impl
+package de.maurer.gamegarden.mapper.impl
 
-import de.maurer.pr_dallmayr.entities.Users
-import de.maurer.pr_dallmayr.mapper.UsersMapper
-import de.maurer.pr_dallmayr.web.dto.UsersDTO
+import de.maurer.gamegarden.entities.Users
+import de.maurer.gamegarden.mapper.UsersMapper
+import de.maurer.gamegarden.web.dto.UsersDTO
 import org.springframework.stereotype.Service
 
 @Service

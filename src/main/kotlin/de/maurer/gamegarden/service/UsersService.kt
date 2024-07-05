@@ -1,6 +1,6 @@
-package de.maurer.pr_dallmayr.service
+package de.maurer.gamegarden.service
 
-import de.maurer.pr_dallmayr.web.dto.UsersDTO
+import de.maurer.gamegarden.web.dto.UsersDTO
 
 interface UsersService {
 

@@ -1,7 +1,7 @@
-package de.maurer.pr_dallmayr.web.rest
+package de.maurer.gamegarden.web.rest
 
-import de.maurer.pr_dallmayr.service.UsersService
-import de.maurer.pr_dallmayr.web.dto.UsersDTO
+import de.maurer.gamegarden.service.UsersService
+import de.maurer.gamegarden.web.dto.UsersDTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping

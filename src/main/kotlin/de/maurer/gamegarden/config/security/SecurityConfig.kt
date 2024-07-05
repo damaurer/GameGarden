@@ -1,4 +1,4 @@
-package de.maurer.pr_dallmayr.config.security
+package de.maurer.gamegarden.config.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

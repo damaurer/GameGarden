@@ -1,6 +1,6 @@
-package de.maurer.pr_dallmayr.entities
+package de.maurer.gamegarden.entities
 
-import de.maurer.pr_dallmayr.base.RootEntity
+import de.maurer.gamegarden.base.RootEntity
 import jakarta.persistence.*
 
 @Entity

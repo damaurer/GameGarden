@@ -1,6 +1,6 @@
-package de.maurer.pr_dallmayr.web.dto
+package de.maurer.gamegarden.web.dto
 
-import de.maurer.pr_dallmayr.base.RootDTO
+import de.maurer.gamegarden.base.RootDTO
 class UsersDTO:RootDTO() {
 
     var userName: String? = null

@@ -1,4 +1,4 @@
-package de.maurer.pr_dallmayr.base
+package de.maurer.gamegarden.base
 
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType

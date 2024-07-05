@@ -1,4 +1,4 @@
-package de.maurer.gamegarden.config.security
+package de.maurer.gamegarden.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -6,9 +6,7 @@
 	let isAuth = false;
 
 	onMount(async () => {
-		await keycloak.init({ onLoad: 'login-required' }).then((auth) => {
-			if()
-		})
+		await keycloak.init({ onLoad: 'login-required' })
 		isAuth = true;
 	});
 </script>

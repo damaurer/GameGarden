@@ -1,0 +1,277 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: maurer
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+
+  - changeSet:
+      id: 2
+      author: maurer
+      changes:
+        - createTable:
+            tableName: user_group
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_group_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 3
+      author: maurer
+      changes:
+        - createTable:
+            tableName: user_to_group
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group
+                    referencedTableName: user_group
+                    referencedColumnNames: id
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_to_group_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 4
+      author: maurer
+      changes:
+        - createTable:
+            tableName: game
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(244)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: registry_url
+                  type: varchar(244)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_game_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 5
+      author: maurer
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: DO $$ BEGIN CREATE TYPE game_server_state AS ENUM ('STARTED', 'STOPPED', 'REMOVED', 'RUNNING'); EXCEPTION WHEN duplicate_object THEN null; END $$;
+        - createTable:
+            tableName: game_server
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_game_server_game
+                    referencedTableName: game
+                    referencedColumnNames: id
+              - column:
+                  name: user_group_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_game_server_user_group
+                    referencedTableName: user_group
+                    referencedColumnNames: id
+              - column:
+                  name: container_id
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: game_server_state
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_game_server_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 6
+      author: maurer
+      changes:
+        - createTable:
+            tableName: game_variables
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_game_variable_game
+                    referencedTableName: game
+                    referencedColumnNames: id
+              - column:
+                  name: variable
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: varchar(255)
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_game_variable_user
+                    referencedTableName: user
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP

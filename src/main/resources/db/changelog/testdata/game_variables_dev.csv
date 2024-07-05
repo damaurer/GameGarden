@@ -1,0 +1,11 @@
+id,game_id,variable,value,deleted,changed_by,last_modified
+1,1,Difficulty,Easy,false,1,2022-01-01 00:00:00
+2,1,MaxPlayers,4,false,2,2022-01-02 00:00:00
+3,2,Level,Medium,false,1,2022-01-03 00:00:00
+4,2,TimeLimit,30,false,2,2022-01-04 00:00:00
+5,3,Difficulty,Hard,false,1,2022-01-05 00:00:00
+6,3,MaxPlayers,6,false,2,2022-01-06 00:00:00
+7,4,Level,Easy,false,1,2022-01-07 00:00:00
+8,4,TimeLimit,45,false,2,2022-01-08 00:00:00
+9,5,Difficulty,Medium,false,1,2022-01-09 00:00:00
+10,5,MaxPlayers,8,false,2,2022-01-10 00:00:00

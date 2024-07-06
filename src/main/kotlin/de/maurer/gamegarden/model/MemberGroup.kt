@@ -19,7 +19,7 @@ class MemberGroup(
 
     @Id
     @SequenceGenerator(name = "member_group_id_seq", sequenceName = "member_group_id_seq")
-    val id: Int,
+    val id: Long,
 
     @Column(name = "group_name" , nullable = false)
     val groupName: String,

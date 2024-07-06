@@ -7,7 +7,7 @@ import java.io.Serializable
 @Embeddable
 class MemberToGroupKey (
     @Column(name = "member_id" , nullable = false)
-    val memberId: Int,
+    val memberId: Long,
     @Column(name = "group_id" , nullable = false)
-    val groupId: Int
+    val groupId: Long
 ): Serializable

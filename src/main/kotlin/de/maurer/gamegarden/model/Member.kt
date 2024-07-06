@@ -19,7 +19,7 @@ class Member(
 
     @Id
     @SequenceGenerator(name = "member_id_seq", sequenceName = "member_id_seq")
-    val id: Int,
+    val id: Long,
 
     @Column(name = "membername" , nullable = false)
     val membername: String,

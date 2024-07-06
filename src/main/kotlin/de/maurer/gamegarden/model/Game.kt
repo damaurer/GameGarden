@@ -12,7 +12,7 @@ class Game(
 
     @Id
     @SequenceGenerator(name = "game_id_seq", sequenceName = "game_id_seq")
-    val id: Int,
+    val id: Long,
 
     @Column(name = "name" , nullable = false)
     val name: String,

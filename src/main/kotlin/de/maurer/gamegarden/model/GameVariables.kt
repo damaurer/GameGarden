@@ -19,7 +19,7 @@ class GameVariables(
 
     @Id
     @SequenceGenerator(name = "game_variables_id_seq", sequenceName = "game_variables_id_seq")
-    val id: Int,
+    val id: Long,
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)

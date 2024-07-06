@@ -5,7 +5,7 @@ import de.maurer.gamegarden.service.DockerService
 import org.springframework.stereotype.Service
 
 @Service
-class DockerServiceImp(val dockerCLient: DockerClient): DockerService{
+class DockerServiceImp(val dockerClient: DockerClient): DockerService{
 
 
     override fun startGameServer() {

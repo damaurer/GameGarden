@@ -1,5 +1,6 @@
 package de.maurer.gamegarden.model
 
+import de.maurer.gamegarden.model.enums.GameServerState
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EntityListeners
@@ -36,7 +37,7 @@ class GameServer(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status" , nullable = false)
-    val status: GameServerState,
+    var status: GameServerState,
 
     @Column(name = "deleted" , nullable = false)
     val deleted: Boolean = false,

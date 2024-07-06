@@ -1,4 +1,4 @@
-package de.maurer.gamegarden.model
+package de.maurer.gamegarden.model.enums
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

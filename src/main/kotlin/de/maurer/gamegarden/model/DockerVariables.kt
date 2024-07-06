@@ -1,5 +1,6 @@
 package de.maurer.gamegarden.model
 
+import de.maurer.gamegarden.model.enums.DockerVariablesTyp
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EntityListeners

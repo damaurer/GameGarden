@@ -26,7 +26,7 @@ databaseChangeLog:
               - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -63,7 +63,7 @@ databaseChangeLog:
               - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -104,7 +104,7 @@ databaseChangeLog:
               - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -143,6 +143,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: image
+                  type: varchar(244)
+                  constraints:
+                    nullable: false
+              - column:
                   name: registry_url
                   type: varchar(244)
                   constraints:
@@ -150,7 +155,7 @@ databaseChangeLog:
               - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -211,7 +216,7 @@ databaseChangeLog:
               - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -259,7 +264,7 @@ databaseChangeLog:
               - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -313,9 +318,15 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: is_env
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
                   name: deleted
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:

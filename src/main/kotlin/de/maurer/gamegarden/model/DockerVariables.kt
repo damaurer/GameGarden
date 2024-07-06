@@ -37,6 +37,9 @@ class DockerVariables(
     @Column(name = "typ" , nullable = false)
     val typ: DockerVariablesTyp,
 
+    @Column(name = "is_env" , nullable = false)
+    val isEnv: Boolean = false,
+
     @Column(name = "deleted" , nullable = false)
     val deleted: Boolean = false,
 

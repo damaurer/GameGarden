@@ -17,6 +17,9 @@ class Game(
     @Column(name = "name" , nullable = false)
     val name: String,
 
+    @Column(name = "image" , nullable = false)
+    val image: String,
+
     @Column(name = "registry_url" , nullable = false)
     val registryUrl: String,
 

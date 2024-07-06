@@ -145,3 +145,35 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+        - loadData:
+            file: classpath:/db/changelog/testdata/docker_variables_dev.csv
+            separator: ","
+            tableName: docker_variables
+            columns:
+              - column:
+                  name: id
+                  type: int
+              - column:
+                  name: game_id
+                  type: bigInt
+              - column:
+                  name: variable
+                  type: varchar(255)
+              - column:
+                  name: value
+                  type: varchar(255)
+              - column:
+                  name: typ
+                  type: "ENUM('OPTIONS', 'COMMAND', 'ARG')"
+              - column:
+                  name: is_env
+                  type: boolean
+              - column:
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: changed_by
+                  type: int
+              - column:
+                  name: last_modified
+                  type: timestamp

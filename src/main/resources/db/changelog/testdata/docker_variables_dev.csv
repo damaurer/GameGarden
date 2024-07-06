@@ -1,0 +1,15 @@
+id,game_id,variable,value,typ,is_env,deleted,changed_by,last_modified
+1,1,--detach,null,OPTIONS,false,false,1,2022-09-30 10:00:00
+2,1,--name,soulmask-server,OPTIONS,false,false,1,2022-09-30 10:00:00
+3,1,--mount,"type=volume,source=soulmask-persistent-data,target=/home/steam/soulmask",OPTIONS,false,false,1,2022-09-30 10:00:00
+4,1,--publish,27050:27050/udp,OPTIONS,false,false,1,2022-09-30 10:00:00
+5,1,--publish,27051:27051/udp,OPTIONS,false,false,1,2022-09-30 10:00:00
+6,1,SERVER_NAME,"Soulmask Containerized Server",ARG,true,false,1,2022-09-30 10:00:00
+7,1,GAME_MODE,pve,ARG,true,false,1,2022-09-30 10:00:00
+8,1,SERVER_SLOTS,50,ARG,true,false,1,2022-09-30 10:00:00
+9,1,SERVER_PASSWORD,PleaseChangeMe,ARG,true,false,1,2022-09-30 10:00:00
+10,1,ADMIN_PASSWORD,AdminPleaseChangeMe,ARG,true,false,1,2022-09-30 10:00:00
+11,1,GAME_PORT,27050,ARG,true,false,1,2022-09-30 10:00:00
+12,1,QUERY_PORT,27051,ARG,true,false,1,2022-09-30 10:00:00
+13,1,LISTEN_ADDRESS,0.0.0.0,ARG,true,false,1,2022-09-30 10:00:00
+14,1,--stop-timeout,90,OPTIONS,false,false,1,2022-09-30 10:00:00

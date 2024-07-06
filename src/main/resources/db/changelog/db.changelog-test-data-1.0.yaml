@@ -5,15 +5,15 @@ databaseChangeLog:
       context: dev
       changes:
         - loadData:
-            file: classpath:/db/changelog/testdata/user_dev.csv
+            file: classpath:/db/changelog/testdata/member_dev.csv
             separator: ","
-            tableName: user
+            tableName: member
             columns:
               - column:
                   name: id
                   type: int
               - column:
-                  name: username
+                  name: membername
                   type: varchar(100)
               - column:
                   name: email
@@ -28,9 +28,9 @@ databaseChangeLog:
                   name: last_modified
                   type: timestamp
         - loadData:
-            file: classpath:/db/changelog/testdata/user_group_dev.csv
+            file: classpath:/db/changelog/testdata/member_group_dev.csv
             separator: ","
-            tableName: user_group
+            tableName: member_group
             columns:
               - column:
                   name: id
@@ -48,12 +48,12 @@ databaseChangeLog:
                   name: last_modified
                   type: timestamp
         - loadData:
-            file: classpath:/db/changelog/testdata/user_to_group_dev.csv
+            file: classpath:/db/changelog/testdata/member_to_group_dev.csv
             separator: ","
-            tableName: user_to_group
+            tableName: member_to_group
             columns:
               - column:
-                  name: user_id
+                  name: member_id
                   type: int
               - column:
                   name: group_id
@@ -102,7 +102,7 @@ databaseChangeLog:
                   name: game_id
                   type: int
               - column:
-                  name: user_group_id
+                  name: member_group_id
                   type: int
               - column:
                   name: container_id

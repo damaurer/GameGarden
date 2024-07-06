@@ -1,4 +1,4 @@
-id,game_id,user_group_id,container_id,status,deleted,changed_by,last_modified
+id,game_id,member_group_id,container_id,status,deleted,changed_by,last_modified
 1,1,1,abc123,STARTED,false,1,2022-01-01 00:00:00
 2,2,2,def456,STARTED,false,2,2022-01-02 00:00:00
 3,3,3,ghi789,RUNNING,false,1,2022-01-03 00:00:00

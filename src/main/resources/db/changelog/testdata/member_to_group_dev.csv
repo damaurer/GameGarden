@@ -1,4 +1,4 @@
-user_id,group_id,deleted,changed_by,last_modified
+member_id,group_id,deleted,changed_by,last_modified
 1,1,false,1,2022-01-01 00:00:00
 2,2,false,2,2022-01-02 00:00:00
 3,3,false,1,2022-01-03 00:00:00

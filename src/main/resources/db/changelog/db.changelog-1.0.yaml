@@ -4,7 +4,7 @@ databaseChangeLog:
       author: maurer
       changes:
         - createTable:
-            tableName: user
+            tableName: member
             columns:
               - column:
                   name: id
@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: username
+                  name: membername
                   type: varchar(100)
                   constraints:
                     nullable: false
@@ -33,9 +33,8 @@ databaseChangeLog:
                   name: changed_by
                   type: int
                   constraints:
-                    nullable: false
-                    foreignKeyName: fk_user_user
-                    referencedTableName: user
+                    foreignKeyName: fk_member_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -48,7 +47,7 @@ databaseChangeLog:
       author: maurer
       changes:
         - createTable:
-            tableName: user_group
+            tableName: member_group
             columns:
               - column:
                   name: id
@@ -71,9 +70,8 @@ databaseChangeLog:
                   name: changed_by
                   type: int
                   constraints:
-                    nullable: false
-                    foreignKeyName: fk_user_group_user
-                    referencedTableName: user
+                    foreignKeyName: fk_member_group_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -85,15 +83,15 @@ databaseChangeLog:
       author: maurer
       changes:
         - createTable:
-            tableName: user_to_group
+            tableName: member_to_group
             columns:
               - column:
-                  name: user_id
+                  name: member_id
                   type: int
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_user
-                    referencedTableName: user
+                    foreignKeyName: fk_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: group_id
@@ -101,7 +99,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_group
-                    referencedTableName: user_group
+                    referencedTableName: member_group
                     referencedColumnNames: id
               - column:
                   name: deleted
@@ -113,14 +111,17 @@ databaseChangeLog:
                   name: changed_by
                   type: int
                   constraints:
-                    nullable: false
-                    foreignKeyName: fk_user_to_group_user
-                    referencedTableName: user
+                    foreignKeyName: fk_member_to_group_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+        - addPrimaryKey:
+            tableName: member_to_group
+            columnNames: member_id,group_id
+            constraintName: pk_member_to_group
 
   - changeSet:
       id: 4
@@ -156,9 +157,8 @@ databaseChangeLog:
                   name: changed_by
                   type: int
                   constraints:
-                    nullable: false
-                    foreignKeyName: fk_game_user
-                    referencedTableName: user
+                    foreignKeyName: fk_game_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -191,12 +191,12 @@ databaseChangeLog:
                     referencedTableName: game
                     referencedColumnNames: id
               - column:
-                  name: user_group_id
+                  name: member_group_id
                   type: int
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_game_server_user_group
-                    referencedTableName: user_group
+                    foreignKeyName: fk_game_server_member_group
+                    referencedTableName: member_group
                     referencedColumnNames: id
               - column:
                   name: container_id
@@ -218,9 +218,8 @@ databaseChangeLog:
                   name: changed_by
                   type: int
                   constraints:
-                    nullable: false
-                    foreignKeyName: fk_game_server_user
-                    referencedTableName: user
+                    foreignKeyName: fk_game_server_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -267,9 +266,64 @@ databaseChangeLog:
                   name: changed_by
                   type: int
                   constraints:
+                    foreignKeyName: fk_game_variable_member
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 7
+      author: maurer
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: DO $$ BEGIN CREATE TYPE docker_variables_typ AS ENUM ('OPTIONS', 'COMMAND', 'ARG'); EXCEPTION WHEN duplicate_object THEN null; END $$;
+        - createTable:
+            tableName: docker_variables
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
                     nullable: false
-                    foreignKeyName: fk_game_variable_user
-                    referencedTableName: user
+              - column:
+                  name: game_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_game
+                    referencedTableName: game
+                    referencedColumnNames: id
+              - column:
+                  name: variable
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: varchar(255)
+              - column:
+                  name: typ
+                  type: docker_variables_typ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_docker_variable_member
+                    referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified

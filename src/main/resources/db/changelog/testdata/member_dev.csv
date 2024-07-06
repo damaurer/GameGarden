@@ -1,4 +1,4 @@
-id,username,email,deleted,changed_by,last_modified
+id,membername,email,deleted,changed_by,last_modified
 1,john.doe,doe.john@example.com,false,1,2022-01-01 00:00:00
 2,jane.doe,doe.jane@example.com,false,2,2022-01-02 00:00:00
 3,bob.smith,smith.bob@example.com,false,3,2022-01-03 00:00:00

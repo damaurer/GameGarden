@@ -3,23 +3,24 @@ package de.maurer.gamegarden.dto
 import de.maurer.gamegarden.model.Game
 import de.maurer.gamegarden.model.Member
 import java.sql.Timestamp
+import java.time.LocalDateTime
 
 
 data class GameDTO(
 
-    val id: Long,
+    val id: Long?,
 
-    val name: String,
+    val name: String?,
 
-    val image: String,
+    val image: String?,
 
-    val registryUrl: String,
+    val registryUrl: String?,
 
     val deleted: Boolean = false,
 
-    val changedBy: Member,
+    val changedBy: Member?,
 
-    val lastModified: Timestamp
+    val lastModified: LocalDateTime?
 
 )
 

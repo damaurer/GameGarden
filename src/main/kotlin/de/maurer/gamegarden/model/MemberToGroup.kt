@@ -1,5 +1,6 @@
 package de.maurer.gamegarden.model
 
+import de.maurer.gamegarden.model.base.RootEntity
 import jakarta.persistence.Column
 import jakarta.persistence.EmbeddedId
 import jakarta.persistence.Entity
@@ -14,22 +15,8 @@ import java.sql.Timestamp
 
 @Entity
 @Table(name = "member_to_group")
-@EntityListeners(AuditingEntityListener::class)
-class MemberToGroup(
+class MemberToGroup: RootEntity(){
     @EmbeddedId
-    val id: MemberToGroupKey,
-
-    @Column(name = "deleted", nullable = false)
-    val deleted: Boolean = false,
-
-    @ManyToOne
-    @JoinColumn(name = "changed_by", nullable = false)
-    val changedBy: Member,
-
-    @Column(name = "last_modified", nullable = false)
-    @LastModifiedDate
-    val lastModified: Timestamp
-) {
-
+    val id: MemberToGroupKey? = null
 }
 

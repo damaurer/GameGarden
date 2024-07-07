@@ -31,15 +31,38 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: changed_by
-                  type: int
+                  type: bigInt
                   constraints:
-                    foreignKeyName: fk_member_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
 
 
   - changeSet:
@@ -70,13 +93,36 @@ databaseChangeLog:
                   name: changed_by
                   type: bigInt
                   constraints:
-                    foreignKeyName: fk_member_group_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
 
   - changeSet:
       id: 3
@@ -111,13 +157,30 @@ databaseChangeLog:
                   name: changed_by
                   type: bigInt
                   constraints:
-                    foreignKeyName: fk_member_to_group_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
         - addPrimaryKey:
             tableName: member_to_group
             columnNames: member_id,group_id
@@ -162,13 +225,36 @@ databaseChangeLog:
                   name: changed_by
                   type: bigInt
                   constraints:
-                    foreignKeyName: fk_game_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
 
   - changeSet:
       id: 5
@@ -223,14 +309,36 @@ databaseChangeLog:
                   name: changed_by
                   type: bigInt
                   constraints:
-                    foreignKeyName: fk_game_server_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
-
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
   - changeSet:
       id: 6
       author: maurer
@@ -271,13 +379,36 @@ databaseChangeLog:
                   name: changed_by
                   type: bigInt
                   constraints:
-                    foreignKeyName: fk_game_variable_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
 
   - changeSet:
       id: 7
@@ -333,10 +464,33 @@ databaseChangeLog:
                   name: changed_by
                   type: bigInt
                   constraints:
-                    foreignKeyName: fk_docker_variable_member
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
                   name: last_modified
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_docker_variable_created
+                    referencedTableName: member
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false

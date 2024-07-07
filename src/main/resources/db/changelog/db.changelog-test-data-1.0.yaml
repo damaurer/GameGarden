@@ -27,6 +27,15 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
+                  type: int
         - loadData:
             file: classpath:/db/changelog/testdata/member_group_dev.csv
             separator: ","
@@ -47,6 +56,15 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
+                  type: int
         - loadData:
             file: classpath:/db/changelog/testdata/member_to_group_dev.csv
             separator: ","
@@ -66,6 +84,12 @@ databaseChangeLog:
                   type: int
               - column:
                   name: last_modified
+                  type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
                   type: timestamp
         - loadData:
             file: classpath:/db/changelog/testdata/game_dev.csv
@@ -90,6 +114,15 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
+                  type: int
         - loadData:
             file: classpath:/db/changelog/testdata/game_server_dev.csv
             separator: ","
@@ -119,6 +152,15 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
+                  type: int
         - loadData:
             file: classpath:/db/changelog/testdata/game_variables_dev.csv
             separator: ","
@@ -145,6 +187,15 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
+                  type: int
         - loadData:
             file: classpath:/db/changelog/testdata/docker_variables_dev.csv
             separator: ","
@@ -177,3 +228,12 @@ databaseChangeLog:
               - column:
                   name: last_modified
                   type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
+                  type: int

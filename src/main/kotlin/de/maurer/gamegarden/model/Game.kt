@@ -1,5 +1,6 @@
 package de.maurer.gamegarden.model
 
+import de.maurer.gamegarden.model.base.RootEntity
 import jakarta.persistence.*
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -7,32 +8,21 @@ import java.sql.Timestamp
 
 @Entity
 @Table(name = "game")
-@EntityListeners(AuditingEntityListener::class)
-class Game(
+class Game: RootEntity() {
 
     @Id
     @SequenceGenerator(name = "game_id_seq", sequenceName = "game_id_seq")
-    val id: Long,
+    val id: Long? = null
 
-    @Column(name = "name" , nullable = false)
-    val name: String,
+    @Column(name = "name", nullable = false)
+    var name: String? = null
 
-    @Column(name = "image" , nullable = false)
-    val image: String,
+    @Column(name = "image", nullable = false)
+    var image: String? = null
 
-    @Column(name = "registry_url" , nullable = false)
-    val registryUrl: String,
+    @Column(name = "registry_url", nullable = false)
+    var registryUrl: String? = null
 
-    @Column(name = "deleted" , nullable = false)
-    val deleted: Boolean = false,
 
-    @ManyToOne
-    @JoinColumn(name = "changed_by", nullable = false)
-    val changedBy: Member,
-
-    @Column(name = "last_modified", nullable = false)
-    @LastModifiedDate
-    val lastModified: Timestamp
-
-)
+}
 

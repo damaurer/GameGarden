@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("api/game/server")
+@RestController()
+@RequestMapping("api/game/server")
 class GameServerController(val gameServerService: GameServerService) {
 
     @PostMapping("/command")

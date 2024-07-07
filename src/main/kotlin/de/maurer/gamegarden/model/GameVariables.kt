@@ -1,5 +1,6 @@
 package de.maurer.gamegarden.model
 
+import de.maurer.gamegarden.model.base.RootEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EntityListeners
@@ -14,33 +15,19 @@ import java.sql.Timestamp
 
 @Entity
 @Table(name = "game_variables")
-@EntityListeners(AuditingEntityListener::class)
-class GameVariables(
+class GameVariables: RootEntity() {
 
     @Id
     @SequenceGenerator(name = "game_variables_id_seq", sequenceName = "game_variables_id_seq")
-    val id: Long,
+    val id: Long? = null
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
-    val game: Game,
+    var game: Game? = null
 
-    @Column(name = "variable" , nullable = false)
-    val variable: String,
+    @Column(name = "variable", nullable = false)
+    var variable: String? = null
 
-    @Column(name = "value" , nullable = false)
-    val value: String,
-
-    @Column(name = "deleted" , nullable = false)
-    val deleted: Boolean = false,
-
-    @ManyToOne
-    @JoinColumn(name = "changed_by", nullable = false)
-    val changedBy: Member,
-
-    @Column(name = "last_modified", nullable = false)
-    @LastModifiedDate
-    val lastModified: Timestamp
-
-    )
-
+    @Column(name = "value", nullable = false)
+    var value: String? = null
+}

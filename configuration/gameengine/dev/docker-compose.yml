@@ -15,35 +15,6 @@ services:
     networks:
       - gamegarden_net
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: dev_keycloak
-    command: start-dev --import-realm
-    env_file:
-      - keycloak.env
-    volumes:
-      - ./keycloak:/opt/keycloak/data/import
-    depends_on:
-      keycloak_db:
-        condition: service_healthy
-    ports:
-      - "8443:8080"
-    networks:
-      - gamegarden_net
-
-  keycloak_db:
-    image: postgres:latest
-    container_name: dev_keycloak_db
-    volumes:
-      - keycloak:/var/lib/postgresql/data
-    env_file:
-      - keycloak.env
-    healthcheck:
-      test: "exit 0"
-    ports:
-      - "5432:5432"
-    networks:
-      - gamegarden_net
 
 networks:
   gamegarden_net:

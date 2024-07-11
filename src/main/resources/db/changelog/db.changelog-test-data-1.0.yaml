@@ -142,42 +142,7 @@ databaseChangeLog:
                   type: varchar(64)
               - column:
                   name: status
-                  type: "ENUM('STARTED', 'STOPPED', 'REMOVED', 'RUNNING')"
-              - column:
-                  name: deleted
-                  type: boolean
-              - column:
-                  name: changed_by
-                  type: int
-              - column:
-                  name: last_modified
-                  type: timestamp
-              - column:
-                  name: created_by
-                  type: bigInt
-              - column:
-                  name: created_date
-                  type: timestamp
-              - column:
-                  name: version
-                  type: int
-        - loadData:
-            file: classpath:/db/changelog/testdata/game_variables_dev.csv
-            separator: ","
-            tableName: game_variables
-            columns:
-              - column:
-                  name: id
-                  type: int
-              - column:
-                  name: game_id
-                  type: int
-              - column:
-                  name: variable
-                  type: varchar(255)
-              - column:
-                  name: value
-                  type: varchar(255)
+                  type: varchar(10)
               - column:
                   name: deleted
                   type: boolean
@@ -215,7 +180,7 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: typ
-                  type: "ENUM('OPTIONS', 'COMMAND', 'ARG')"
+                  type: varchar(10)
               - column:
                   name: is_env
                   type: boolean

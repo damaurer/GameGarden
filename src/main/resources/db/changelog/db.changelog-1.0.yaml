@@ -34,7 +34,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_changed
+                    foreignKeyName: fk_member_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -48,7 +48,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_created
+                    foreignKeyName: fk_member_created
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -94,7 +94,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_changed
+                    foreignKeyName: fk_member_group_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -108,7 +108,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_created
+                    foreignKeyName: fk_member_group_created
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -158,7 +158,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_changed
+                    foreignKeyName: fk_member_to_group_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -172,7 +172,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_created
+                    foreignKeyName: fk_member_to_group_created
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -226,7 +226,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_changed
+                    foreignKeyName: fk_game_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -240,7 +240,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_created
+                    foreignKeyName: fk_game_created
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -260,9 +260,6 @@ databaseChangeLog:
       id: 5
       author: maurer
       changes:
-        - sql:
-            dbms: postgresql
-            sql: DO $$ BEGIN CREATE TYPE game_server_state AS ENUM ('STARTED', 'STOPPED', 'REMOVED', 'RUNNING'); EXCEPTION WHEN duplicate_object THEN null; END $$;
         - createTable:
             tableName: game_server
             columns:
@@ -296,7 +293,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: status
-                  type: game_server_state
+                  type: varchar(10)
                   constraints:
                     nullable: false
               - column:
@@ -310,7 +307,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_changed
+                    foreignKeyName: fk_game_server_changed
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -324,7 +321,7 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_docker_variable_created
+                    foreignKeyName: fk_game_server_created
                     referencedTableName: member
                     referencedColumnNames: id
               - column:
@@ -343,80 +340,6 @@ databaseChangeLog:
       id: 6
       author: maurer
       changes:
-        - createTable:
-            tableName: game_variables
-            columns:
-              - column:
-                  name: id
-                  type: bigInt
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: game_id
-                  type: bigInt
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_game_variable_game
-                    referencedTableName: game
-                    referencedColumnNames: id
-              - column:
-                  name: variable
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: value
-                  type: varchar(255)
-              - column:
-                  name: deleted
-                  type: boolean
-                  defaultValueBoolean: false
-                  constraints:
-                    nullable: false
-              - column:
-                  name: changed_by
-                  type: bigInt
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_docker_variable_changed
-                    referencedTableName: member
-                    referencedColumnNames: id
-              - column:
-                  name: last_modified
-                  type: timestamp
-                  defaultValueComputed: CURRENT_TIMESTAMP
-                  constraints:
-                    nullable: false
-              - column:
-                  name: created_by
-                  type: bigInt
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_docker_variable_created
-                    referencedTableName: member
-                    referencedColumnNames: id
-              - column:
-                  name: created_date
-                  type: timestamp
-                  defaultValueComputed: CURRENT_TIMESTAMP
-                  constraints:
-                    nullable: false
-              - column:
-                  name: version
-                  type: int
-                  defaultValueNumeric: "0"
-                  constraints:
-                    nullable: false
-
-  - changeSet:
-      id: 7
-      author: maurer
-      changes:
-        - sql:
-            dbms: postgresql
-            sql: DO $$ BEGIN CREATE TYPE docker_variables_typ AS ENUM ('OPTIONS', 'COMMAND', 'ARG'); EXCEPTION WHEN duplicate_object THEN null; END $$;
         - createTable:
             tableName: docker_variables
             columns:
@@ -445,7 +368,7 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: typ
-                  type: docker_variables_typ
+                  type: varchar(10)
                   constraints:
                     nullable: false
               - column:

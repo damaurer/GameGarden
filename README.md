@@ -12,8 +12,8 @@ groups for better management and is configured through a Svelte.js PWA.
 3. [Feature - Automated Git-based GameServer World Backups](#feature---automated-git-based-gameserver-world-backups)
     - [Prerequisites](#prerequisites)
     - [Backup Process](#backup-process)
-4. [User Management Features](#user-management-features)
-    - [Feature - User Management](#feature---user-management)
+4. [User Management Features](#feature---user-management)
+    - [Feature - User Management](#user-management)
 5. [Getting Started](#getting-started)
 6. [Development Status Checklist](#development-status-checklist)
 7. [Contributing](#contributing)
@@ -88,13 +88,13 @@ automated. Simply enable it with the desired Git user and token, and enjoy peace
 **NOTE**: The frequency of automatic backups should be configured based on the specific needs of your game server. More
 frequently updated worlds may require more frequent backups to prevent significant data loss.
 
-## User Management Features
+## Feature - User Management
 
 GameGarden provides a robust and secure user management system, developed using Spring Security. This system allows for
 various levels of control and privileges through the implementation of roles and groups, contributing to a versatile and
 customizable security model.
 
-### Feature - User Management
+### User Management
 
 1. **User Roles**: Each user in GameGarden is assigned a specific "Role". Roles are used to define the level of access
    or control a user has within the system. Examples of roles can be "Admin", "Moderator", "Player", etc., each with its

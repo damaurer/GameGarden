@@ -154,6 +154,13 @@ The following checklist contains major development tasks for the GameGarden syst
     - [] Implementing CRUD operations
     - [] Establishing connection with the application
 
+5. [] **Backup Process**
+    - [] Setting up automated backups
+    - [] Saving the current state of the game world data in a backup directory
+    - [] Staging and committing the saved game world to the local Git LFS repository
+    - [] Pushing data to a remote Git repository
+    - [] Setting up restore process
+
 
 ## Contributing
 

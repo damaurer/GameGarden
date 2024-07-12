@@ -26,15 +26,26 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security:spring-security-config")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.liquibase:liquibase-core")
-    implementation("com.google.guava:guava:30.0")
-    implementation("org.apache.commons:commons-compress:1.26")
+
+
+    // Docker API
+//    implementation("com.google.guava:guava:33.2.1")
+    implementation("org.apache.commons:commons-compress:1.26.2")
     implementation("com.github.docker-java:docker-java-core:3.3.6")
     implementation("com.github.docker-java:docker-java-transport-httpclient5:3.3.6")
+
+
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework:spring-test")
+    testImplementation("org.springframework.security:spring-security-test:4.2.20.RELEASE")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

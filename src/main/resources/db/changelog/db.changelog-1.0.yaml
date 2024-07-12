@@ -4,7 +4,7 @@ databaseChangeLog:
       author: maurer
       changes:
         - createTable:
-            tableName: member
+            tableName: users
             columns:
               - column:
                   name: id
@@ -14,13 +14,18 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: membername
-                  type: varchar(100)
+                  name: username
+                  type: varchar(50)
                   constraints:
                     nullable: false
               - column:
-                  name: email
-                  type: varchar(255)
+                  name: password
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: boolean
                   constraints:
                     nullable: false
               - column:
@@ -34,8 +39,8 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_member_changed
-                    referencedTableName: member
+                    foreignKeyName: fk_users_changed
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -48,8 +53,8 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_member_created
-                    referencedTableName: member
+                    foreignKeyName: fk_users_created
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: created_date
@@ -64,23 +69,31 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
-
   - changeSet:
       id: 2
       author: maurer
       changes:
         - createTable:
-            tableName: member_group
+            tableName: authorities
             columns:
               - column:
                   name: id
                   type: bigInt
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: group_name
-                  type: varchar(255)
+                  name: user_id
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_authorities_users
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: authority
+                  type: varchar(50)
                   constraints:
                     nullable: false
               - column:
@@ -94,8 +107,8 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_member_group_changed
-                    referencedTableName: member
+                    foreignKeyName: fk_authorities_changed
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -108,8 +121,8 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_member_group_created
-                    referencedTableName: member
+                    foreignKeyName: fk_authorities_created
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: created_date
@@ -128,25 +141,35 @@ databaseChangeLog:
       id: 3
       author: maurer
       changes:
-        - createTable:
-            tableName: member_to_group
+        - createIndex:
+            indexName: ix_auth_userid
+            tableName: authorities
+            unique: true
             columns:
               - column:
-                  name: member_id
-                  type: bigInt
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_member
-                    referencedTableName: member
-                    referencedColumnNames: id
+                  name: user_id
               - column:
-                  name: group_id
-                  type: bigInt
+                  name: authority
+
+  - changeSet:
+      id: 4
+      author: maurer
+      changes:
+        - createTable:
+            tableName: groups
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_name
+                  type: varchar(50)
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_group
-                    referencedTableName: member_group
-                    referencedColumnNames: id
               - column:
                   name: deleted
                   type: boolean
@@ -158,8 +181,8 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_member_to_group_changed
-                    referencedTableName: member
+                    foreignKeyName: fk_groups_changed
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -172,8 +195,8 @@ databaseChangeLog:
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_member_to_group_created
-                    referencedTableName: member
+                    foreignKeyName: fk_groups_created
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: created_date
@@ -181,17 +204,156 @@ databaseChangeLog:
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
                     nullable: false
-        - addPrimaryKey:
-            tableName: member_to_group
-            columnNames: member_id,group_id
-            constraintName: pk_member_to_group
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
 
   - changeSet:
-      id: 4
+      id: 5
       author: maurer
       changes:
         - createTable:
-            tableName: game
+            tableName: group_authorities
+            columns:
+              - column:
+                  name: group_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group_authorities_group
+                    referencedTableName: groups
+                    referencedColumnNames: id
+              - column:
+                  name: authority
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group_authorities_changed
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group_authorities_created
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 6
+      author: maurer
+      changes:
+        - createTable:
+            tableName: group_members
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_users_group
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: group_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group_members_group
+                    referencedTableName: groups
+                    referencedColumnNames: id
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: changed_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group_members_changed
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: last_modified
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: bigInt
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_group_members_created
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: created_date
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  defaultValueNumeric: "0"
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 7
+      author: maurer
+      changes:
+        - createTable:
+            tableName: games
             columns:
               - column:
                   name: id
@@ -227,7 +389,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_game_changed
-                    referencedTableName: member
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -241,7 +403,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_game_created
-                    referencedTableName: member
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: created_date
@@ -257,11 +419,11 @@ databaseChangeLog:
                     nullable: false
 
   - changeSet:
-      id: 5
+      id: 8
       author: maurer
       changes:
         - createTable:
-            tableName: game_server
+            tableName: game_servers
             columns:
               - column:
                   name: id
@@ -276,15 +438,15 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_game_server_game
-                    referencedTableName: game
+                    referencedTableName: games
                     referencedColumnNames: id
               - column:
-                  name: member_group_id
+                  name: user_group_id
                   type: bigInt
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_game_server_member_group
-                    referencedTableName: member_group
+                    foreignKeyName: fk_game_server_group_members
+                    referencedTableName: group_members
                     referencedColumnNames: id
               - column:
                   name: container_id
@@ -308,7 +470,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_game_server_changed
-                    referencedTableName: member
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -322,7 +484,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_game_server_created
-                    referencedTableName: member
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: created_date
@@ -336,8 +498,9 @@ databaseChangeLog:
                   defaultValueNumeric: "0"
                   constraints:
                     nullable: false
+
   - changeSet:
-      id: 6
+      id: 9
       author: maurer
       changes:
         - createTable:
@@ -356,7 +519,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_docker_variable_game
-                    referencedTableName: game
+                    referencedTableName: games
                     referencedColumnNames: id
               - column:
                   name: variable
@@ -389,7 +552,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_docker_variable_changed
-                    referencedTableName: member
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: last_modified
@@ -403,7 +566,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_docker_variable_created
-                    referencedTableName: member
+                    referencedTableName: users
                     referencedColumnNames: id
               - column:
                   name: created_date

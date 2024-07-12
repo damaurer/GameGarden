@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 class UserController {
 
     @GetMapping("/login")

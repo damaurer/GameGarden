@@ -5,25 +5,28 @@ databaseChangeLog:
       context: dev
       changes:
         - loadData:
-            file: classpath:/db/changelog/testdata/member_dev.csv
+            file: classpath:/db/changelog/testdata/users_dev.csv
             separator: ","
-            tableName: member
+            tableName: users
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigInt
               - column:
-                  name: membername
-                  type: varchar(100)
+                  name: username
+                  type: varchar(50)
               - column:
-                  name: email
-                  type: varchar(255)
+                  name: password
+                  type: varchar(500)
+              - column:
+                  name: enabled
+                  type: boolean
               - column:
                   name: deleted
                   type: boolean
               - column:
                   name: changed_by
-                  type: int
+                  type: bigInt
               - column:
                   name: last_modified
                   type: timestamp
@@ -37,22 +40,54 @@ databaseChangeLog:
                   name: version
                   type: int
         - loadData:
-            file: classpath:/db/changelog/testdata/member_group_dev.csv
+            file: classpath:/db/changelog/testdata/authorities_dev.csv
             separator: ","
-            tableName: member_group
+            tableName: authorities
             columns:
               - column:
                   name: id
+                  type: bigInt
+              - column:
+                  name: user_id
+                  type: bigInt
+              - column:
+                  name: authority
+                  type: varchar(50)
+              - column:
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: changed_by
+                  type: bigInt
+              - column:
+                  name: last_modified
+                  type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
                   type: int
+        - loadData:
+            file: classpath:/db/changelog/testdata/groups_dev.csv
+            separator: ","
+            tableName: groups
+            columns:
+              - column:
+                  name: id
+                  type: bigint
               - column:
                   name: group_name
-                  type: varchar(255)
+                  type: varchar(50)
               - column:
                   name: deleted
                   type: boolean
               - column:
                   name: changed_by
-                  type: int
+                  type: bigInt
               - column:
                   name: last_modified
                   type: timestamp
@@ -66,22 +101,22 @@ databaseChangeLog:
                   name: version
                   type: int
         - loadData:
-            file: classpath:/db/changelog/testdata/member_to_group_dev.csv
+            file: classpath:/db/changelog/testdata/group_authorities_dev.csv
             separator: ","
-            tableName: member_to_group
+            tableName: group_authorities
             columns:
               - column:
-                  name: member_id
-                  type: int
-              - column:
                   name: group_id
-                  type: int
+                  type: bigint
+              - column:
+                  name: authority
+                  type: varchar(50)
               - column:
                   name: deleted
                   type: boolean
               - column:
                   name: changed_by
-                  type: int
+                  type: bigInt
               - column:
                   name: last_modified
                   type: timestamp
@@ -91,16 +126,54 @@ databaseChangeLog:
               - column:
                   name: created_date
                   type: timestamp
+              - column:
+                  name: version
+                  type: int
         - loadData:
-            file: classpath:/db/changelog/testdata/game_dev.csv
+            file: classpath:/db/changelog/testdata/group_members_dev.csv
             separator: ","
-            tableName: game
+            tableName: group_members
             columns:
               - column:
                   name: id
+                  type: bigint
+              - column:
+                  name: username
+                  type: varchar(50)
+              - column:
+                  name: group_id
+                  type: bigint
+              - column:
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: changed_by
+                  type: bigInt
+              - column:
+                  name: last_modified
+                  type: timestamp
+              - column:
+                  name: created_by
+                  type: bigInt
+              - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: version
                   type: int
+        - loadData:
+            file: classpath:/db/changelog/testdata/games_dev.csv
+            separator: ","
+            tableName: games
+            columns:
+              - column:
+                  name: id
+                  type: bigInt
               - column:
                   name: name
+                  type: varchar(244)
+              - column:
+                  name: image
                   type: varchar(244)
               - column:
                   name: registry_url
@@ -110,7 +183,7 @@ databaseChangeLog:
                   type: boolean
               - column:
                   name: changed_by
-                  type: int
+                  type: bigInt
               - column:
                   name: last_modified
                   type: timestamp
@@ -124,19 +197,19 @@ databaseChangeLog:
                   name: version
                   type: int
         - loadData:
-            file: classpath:/db/changelog/testdata/game_server_dev.csv
+            file: classpath:/db/changelog/testdata/game_servers_dev.csv
             separator: ","
-            tableName: game_server
+            tableName: game_servers
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigInt
               - column:
                   name: game_id
-                  type: int
+                  type: bigInt
               - column:
-                  name: member_group_id
-                  type: int
+                  name: user_group_id
+                  type: bigInt
               - column:
                   name: container_id
                   type: varchar(64)
@@ -148,7 +221,7 @@ databaseChangeLog:
                   type: boolean
               - column:
                   name: changed_by
-                  type: int
+                  type: bigInt
               - column:
                   name: last_modified
                   type: timestamp

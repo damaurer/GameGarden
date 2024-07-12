@@ -30,7 +30,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithAnonymousUser
     @Throws(Exception::class)
     fun whenAnonymousAccessLogin_thenOk() {
-        mvc.perform(get("/login"))
+        mvc.perform(get("/api/user/login"))
             .andExpect(status().isOk())
     }
 
@@ -38,7 +38,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithAnonymousUser
     @Throws(Exception::class)
     fun whenAnonymousAccessRestrictedEndpoint_thenIsUnauthorized() {
-        mvc.perform(get("/all"))
+        mvc.perform(get("/api/user/all"))
             .andExpect(status().isUnauthorized())
     }
 
@@ -46,7 +46,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails
     @Throws(Exception::class)
     fun whenUserAccessUserSecuredEndpoint_thenOk() {
-        mvc.perform(get("/user"))
+        mvc.perform(get("/api/user/user"))
             .andExpect(status().isOk())
     }
 
@@ -54,7 +54,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails
     @Throws(Exception::class)
     fun whenUserAccessRestrictedEndpoint_thenOk() {
-        mvc.perform(get("/all"))
+        mvc.perform(get("/api/user/all"))
             .andExpect(status().isOk())
     }
 
@@ -62,7 +62,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails
     @Throws(Exception::class)
     fun whenUserAccessAdminSecuredEndpoint_thenIsForbidden() {
-        mvc.perform(get("/admin"))
+        mvc.perform(get("/api/user/admin"))
             .andExpect(status().isForbidden())
     }
 
@@ -70,7 +70,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails
     @Throws(Exception::class)
     fun whenUserAccessDeleteSecuredEndpoint_thenIsForbidden() {
-        mvc.perform(delete("/delete"))
+        mvc.perform(delete("/api/user/delete"))
             .andExpect(status().isForbidden())
     }
 
@@ -78,7 +78,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails(value = "admin")
     @Throws(java.lang.Exception::class)
     fun whenAdminAccessUserEndpoint_thenOk() {
-        mvc.perform(get("/user"))
+        mvc.perform(get("/api/user/user"))
             .andExpect(status().isOk())
     }
 
@@ -86,7 +86,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails(value = "admin")
     @Throws(java.lang.Exception::class)
     fun whenAdminAccessAdminSecuredEndpoint_thenIsOk() {
-        mvc.perform(get("/admin"))
+        mvc.perform(get("/api/user/admin"))
             .andExpect(status().isOk())
     }
 
@@ -94,7 +94,7 @@ class SecurityConfigIntegrationTest(var wac: WebApplicationContext) {
     @WithUserDetails(value = "admin")
     @Throws(java.lang.Exception::class)
     fun whenAdminAccessDeleteSecuredEndpoint_thenIsOk() {
-        mvc.perform(delete("/delete").content("{}"))
+        mvc.perform(delete("/api/user/delete").content("{}"))
             .andExpect(status().isOk())
     }
 }

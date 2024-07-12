@@ -21,26 +21,16 @@ import org.springframework.security.web.SecurityFilterChain
 class SecurityConfig {
 
     @Bean
-    @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-    fun postAuthorize(): Advisor? {
-        return AuthorizationManagerAfterMethodInterceptor.postAuthorize()
-    }
-
-    @Bean
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
+            .csrf { }
             .authorizeHttpRequests { authz ->
                 authz
                     .anyRequest().authenticated()
             }
             .httpBasic(withDefaults())
         return http.build()
-    }
-
-    @Bean
-    fun webSecurityCustomizer(): WebSecurityCustomizer? {
-        return WebSecurityCustomizer { web: WebSecurity -> web.ignoring().requestMatchers("/ignore1", "/ignore2") }
     }
 
 

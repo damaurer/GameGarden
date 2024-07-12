@@ -1,8 +1,7 @@
 package de.maurer.gamegarden.dto
 
 import de.maurer.gamegarden.model.Game
-import de.maurer.gamegarden.model.Member
-import java.sql.Timestamp
+import de.maurer.gamegarden.model.Users
 import java.time.LocalDateTime
 
 
@@ -18,16 +17,16 @@ data class GameDTO(
 
     val deleted: Boolean = false,
 
-    val changedBy: Member?,
+    val changedBy: Users?,
 
     val lastModified: LocalDateTime?
 
 )
 
 
-fun Game.toDTO(): GameDTO{
+fun Game.toDTO(): GameDTO {
     val gameDTO = GameDTO(
-            id,name, image, registryUrl, deleted, changedBy, lastModified
+        id, name, image, registryUrl, deleted, changedBy, lastModified
     )
     return gameDTO
 }

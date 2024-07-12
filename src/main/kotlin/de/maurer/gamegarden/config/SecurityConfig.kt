@@ -1,18 +1,18 @@
 package de.maurer.gamegarden.config
 
-import org.springframework.aop.Advisor
-import org.springframework.beans.factory.config.BeanDefinition
+import de.maurer.gamegarden.model.enums.Roles
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Role
-import org.springframework.security.authorization.method.AuthorizationManagerAfterMethodInterceptor
 import org.springframework.security.config.Customizer.withDefaults
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.provisioning.JdbcUserDetailsManager
+import org.springframework.security.provisioning.UserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import javax.sql.DataSource
 
 
 @Configuration
@@ -24,14 +24,26 @@ class SecurityConfig {
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf { }
-            .authorizeHttpRequests { authz ->
-                authz
+            .authorizeHttpRequests { authorize ->
+                authorize
+                    .requestMatchers("/").permitAll()
+                    .requestMatchers("/api").hasAnyRole(Roles.USER.toString())
+                    .requestMatchers("/api/admin").hasAnyRole(Roles.ADMIN.toString())
                     .anyRequest().authenticated()
             }
             .httpBasic(withDefaults())
+
         return http.build()
     }
 
+    @Bean
+    fun passwordEncoder(): PasswordEncoder {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
+    }
+
+    @Bean
+    fun jdbcUserDetailsManager(dataSource: DataSource): UserDetailsManager {
+        return JdbcUserDetailsManager(dataSource)
+    }
 
 }

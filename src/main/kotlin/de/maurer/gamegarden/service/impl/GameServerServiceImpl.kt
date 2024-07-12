@@ -2,7 +2,7 @@ package de.maurer.gamegarden.service.impl
 
 import de.maurer.gamegarden.model.Game
 import de.maurer.gamegarden.model.GameServer
-import de.maurer.gamegarden.model.MemberGroup
+import de.maurer.gamegarden.model.Groups
 import de.maurer.gamegarden.model.enums.GameServerCommand
 import de.maurer.gamegarden.model.enums.GameServerCommand.*
 import de.maurer.gamegarden.model.enums.GameServerState
@@ -26,7 +26,7 @@ class GameServerServiceImpl(
         return gameServerRepository.findById(id).orElse(null)
     }
 
-    override fun createGameServer(game: Game, group: MemberGroup): GameServer {
+    override fun createGameServer(game: Game, group: Groups): GameServer {
 //        val containerId = dockerService.deployGameServer(game)
 
 
@@ -40,7 +40,7 @@ class GameServerServiceImpl(
 
             when (command) {
                 START -> {
-                    if ( gameServer.status == GameServerState.STOPPED) {
+                    if (gameServer.status == GameServerState.STOPPED) {
                         dockerService.startGameServer()
                         gameServer.status = GameServerState.STARTED
                         gameServerRepository.save(gameServer)
@@ -56,7 +56,7 @@ class GameServerServiceImpl(
                 }
 
                 REMOVE -> {
-                    if ( gameServer.status == GameServerState.STOPPED) {
+                    if (gameServer.status == GameServerState.STOPPED) {
                         dockerService.deployGameServer()
                         gameServer.status = GameServerState.REMOVED
                         gameServerRepository.save(gameServer)
@@ -64,7 +64,7 @@ class GameServerServiceImpl(
                 }
 
                 DELETE -> {
-                    if ( gameServer.status != GameServerState.STOPPED && gameServer.status == GameServerState.REMOVED) {
+                    if (gameServer.status != GameServerState.STOPPED && gameServer.status == GameServerState.REMOVED) {
                         throw IllegalArgumentException("Es kann kein Server gelöscht werden, der nicht gestoppt wurde!")
                     }
 

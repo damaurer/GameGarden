@@ -1,6 +1,6 @@
 package de.maurer.gamegarden.model.base
 
-import de.maurer.gamegarden.model.Member
+import de.maurer.gamegarden.model.Users
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
@@ -12,13 +12,13 @@ import java.time.LocalDateTime
 @EntityListeners(AuditingEntityListener::class)
 abstract class RootEntity {
 
-    @Column(name = "deleted" , nullable = false)
+    @Column(name = "deleted", nullable = false)
     val deleted: Boolean = false
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     @LastModifiedBy
-    val createdBy: Member? = null
+    val createdBy: Users? = null
 
     @CreatedDate
     @Column(name = "created_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
@@ -27,7 +27,7 @@ abstract class RootEntity {
     @ManyToOne
     @JoinColumn(name = "changed_by", nullable = false)
     @LastModifiedBy
-    val changedBy: Member? = null
+    val changedBy: Users? = null
 
     @Column(name = "last_modified", nullable = false, columnDefinition = "TIMESTAMP")
     @LastModifiedDate

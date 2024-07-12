@@ -219,6 +219,13 @@ databaseChangeLog:
             tableName: group_authorities
             columns:
               - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
                   name: group_id
                   type: bigint
                   constraints:
@@ -285,11 +292,6 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
-                    nullable: false
-              - column:
-                  name: username
-                  type: varchar(50)
-                  constraints:
                     nullable: false
               - column:
                   name: user_id

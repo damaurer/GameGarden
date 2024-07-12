@@ -2,7 +2,6 @@ package de.maurer.gamegarden.dto
 
 import de.maurer.gamegarden.model.DockerVariables
 import de.maurer.gamegarden.model.enums.DockerVariablesTyp
-import java.sql.Timestamp
 import java.time.LocalDateTime
 
 data class DockerVariablesDTO(
@@ -20,7 +19,7 @@ data class DockerVariablesDTO(
 
     val deleted: Boolean = false,
 
-    val changedBy: MemberDTO?,
+    val changedBy: UsersDTO?,
 
     val lastModified: LocalDateTime?
 )

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - include:
       file: db/changelog/db.changelog-1.0.yaml
-#  - include:
-#      context: dev
-#      file: db/changelog/db.changelog-test-data-1.0.yaml
+  - include:
+      context: dev
+      file: db/changelog/db.changelog-test-data-1.0.yaml

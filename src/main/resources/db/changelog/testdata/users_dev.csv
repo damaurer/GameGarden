@@ -1,1 +1,6 @@
 "id","username","password","enabled","deleted","changed_by","last_modified","created_by","created_date","version"
+1,User1,$2a$12$kDA9i0.glWHuG7v.O2.PduOQjP2ehGm6Z7H/GKn7CwYiAaAdYq89K,true,false,1,2023-02-27 15:23:10.876,1,2023-02-27 15:23:10.876,0
+2,User2,$2a$12$kDA9i0.glWHuG7v.O2.PduOQjP2ehGm6Z7H/GKn7CwYiAaAdYq89K,true,false,2,2023-02-27 15:23:12.876,2,2023-02-27 15:23:12.876,0
+3,User3,$2a$12$kDA9i0.glWHuG7v.O2.PduOQjP2ehGm6Z7H/GKn7CwYiAaAdYq89K,true,false,1,2023-02-27 15:23:14.876,1,2023-02-27 15:23:14.876,0
+4,User4,$2a$12$kDA9i0.glWHuG7v.O2.PduOQjP2ehGm6Z7H/GKn7CwYiAaAdYq89K,true,false,2,2023-02-27 15:23:16.876,2,2023-02-27 15:23:16.876,0
+5,User5,$2a$12$kDA9i0.glWHuG7v.O2.PduOQjP2ehGm6Z7H/GKn7CwYiAaAdYq89K,true,false,1,2023-02-27 15:23:18.876,1,2023-02-27 15:23:18.876,0

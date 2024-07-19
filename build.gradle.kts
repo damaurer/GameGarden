@@ -29,17 +29,9 @@ dependencies {
 
 
     // Derby
-    implementation("org.apache.derby:derby:10.16.1.1")
-    implementation("org.apache.derby:derbytools:10.16.1.1")
+    implementation("org.apache.derby:derby:10.17.1.0")
+    implementation("org.apache.derby:derbytools:10.17.1.0")
     implementation("org.liquibase:liquibase-core")
-
-
-    // Docker API
-//    implementation("com.google.guava:guava:33.2.1")
-    implementation("org.apache.commons:commons-compress:1.26.2")
-    implementation("com.github.docker-java:docker-java-core:3.3.6")
-    implementation("com.github.docker-java:docker-java-transport-httpclient5:3.3.6")
-
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

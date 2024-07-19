@@ -1,11 +1,10 @@
 package de.maurer.gamegarden.service.impl
 
-import com.github.dockerjava.api.DockerClient
 import de.maurer.gamegarden.service.DockerService
 import org.springframework.stereotype.Service
 
 @Service
-class DockerServiceImp(val dockerClient: DockerClient): DockerService{
+class DockerServiceImp : DockerService {
 
 
     override fun startGameServer() {
@@ -16,7 +15,7 @@ class DockerServiceImp(val dockerClient: DockerClient): DockerService{
         TODO("Not yet implemented")
     }
 
-    override fun isGameServerRunning(): Boolean{
+    override fun isGameServerRunning(): Boolean {
         TODO("Not yet implemented")
     }
 

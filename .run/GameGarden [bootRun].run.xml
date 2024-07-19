@@ -3,6 +3,8 @@
     <ExternalSystemSettings>
       <option name="env">
         <map>
+          <entry key="DB_PASSWORD" value="admin" />
+          <entry key="DB_USERNAME" value="admin" />
           <entry key="DOCKER_CERT_PATH" value="" />
           <entry key="DOCKER_HOST" value="tcp://localhost:2376" />
           <entry key="DOCKER_TSL" value="false" />

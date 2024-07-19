@@ -20,15 +20,17 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly("org.apache.derby:derby:10.17.1.0")
-    implementation("org.apache.derby:derbytools:10.17.1.0")
-
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security:spring-security-config")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+
+    // Derby
+    implementation("org.apache.derby:derby:10.16.1.1")
+    implementation("org.apache.derby:derbytools:10.16.1.1")
     implementation("org.liquibase:liquibase-core")
 
 

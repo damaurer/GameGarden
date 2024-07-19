@@ -1,5 +1,7 @@
 package de.maurer.gamegarden.service
 
-import de.maurer.gamegarden.model.Users
+import de.maurer.gamegarden.dto.UsersDTO
 
-interface UsersService
+interface UsersService {
+    fun getAllUsersData(): Set<UsersDTO>
+}

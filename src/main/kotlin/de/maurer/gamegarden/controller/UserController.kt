@@ -1,11 +1,13 @@
 package de.maurer.gamegarden.controller
 
+import de.maurer.gamegarden.service.UsersService
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
 @RequestMapping("/api/user")
-class UserController {
+class UserController(val usersService: UsersService) {
 
     @GetMapping("/login")
     fun login(): String {
@@ -13,13 +15,14 @@ class UserController {
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')")
     fun admin(): String {
         return "Admin!"
     }
 
     @GetMapping("/user")
     fun user(): String {
-        return "User!"
+        return usersService.getAllUsersData().toString()
     }
 
     @GetMapping("/all")

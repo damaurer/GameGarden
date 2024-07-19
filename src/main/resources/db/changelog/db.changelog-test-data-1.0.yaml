@@ -5,7 +5,7 @@ databaseChangeLog:
       context: dev
       changes:
         - loadData:
-            file: classpath:/db/changelog/testdata/users_dev.csv
+            file: classpath:/db/changelog/test/users_dev.csv
             separator: ","
             tableName: users
             columns:
@@ -45,7 +45,7 @@ databaseChangeLog:
       context: dev
       changes:
         - loadData:
-            file: classpath:/db/changelog/testdata/authorities_dev.csv
+            file: classpath:/db/changelog/test/authorities_dev.csv
             separator: ","
             tableName: authorities
             columns:
@@ -82,7 +82,7 @@ databaseChangeLog:
 #      context: dev
 #      changes:
 #        - loadData:
-#            file: classpath:/db/changelog/testdata/groups_dev.csv
+#            file: classpath:/db/changelog/test/groups_dev.csv
 #            separator: ","
 #            tableName: groups
 #            columns:
@@ -116,7 +116,7 @@ databaseChangeLog:
 #      context: dev
 #      changes:
 #        - loadData:
-#            file: classpath:/db/changelog/testdata/group_authorities_dev.csv
+#            file: classpath:/db/changelog/test/group_authorities_dev.csv
 #            separator: ","
 #            tableName: group_authorities
 #            columns:
@@ -150,7 +150,7 @@ databaseChangeLog:
 #      context: dev
 #      changes:
 #        - loadData:
-#            file: classpath:/db/changelog/testdata/group_members_dev.csv
+#            file: classpath:/db/changelog/test/group_members_dev.csv
 #            separator: ","
 #            tableName: group_members
 #            columns:
@@ -187,7 +187,7 @@ databaseChangeLog:
 #      context: dev
 #      changes:
 #        - loadData:
-#            file: classpath:/db/changelog/testdata/games_dev.csv
+#            file: classpath:/db/changelog/test/games_dev.csv
 #            separator: ","
 #            tableName: games
 #            columns:
@@ -227,7 +227,7 @@ databaseChangeLog:
 #      context: dev
 #      changes:
 #        - loadData:
-#            file: classpath:/db/changelog/testdata/game_servers_dev.csv
+#            file: classpath:/db/changelog/test/game_servers_dev.csv
 #            separator: ","
 #            tableName: game_servers
 #            columns:
@@ -270,7 +270,7 @@ databaseChangeLog:
 #      context: dev
 #      changes:
 #        - loadData:
-#            file: classpath:/db/changelog/testdata/docker_variables_dev.csv
+#            file: classpath:/db/changelog/test/docker_variables_dev.csv
 #            separator: ","
 #            tableName: docker_variables
 #            columns:
